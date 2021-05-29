@@ -1,0 +1,42 @@
+.social__icons {
+  // display: flex;
+  // text-align: center;
+  // justify-content: center;
+  // justify-items: center;
+}
+
+.socials__icons--mobile {
+  @media screen and (min-width: 1280px) {
+    display: none;
+  }
+}
+
+.socials__icons--desktop {
+  @media screen and (max-width: 1279px) {
+    display: none;
+  }
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+}
+.socials__item {
+  margin-right: 10px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+}
+
+.socials__link {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: fill var(--transform-time) var(--transform-function);
+
+  &:hover,
+  &:focus {
+    fill: var(--button-bg-color);
+  }
+}

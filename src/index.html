@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Donut Masterclass with the Donut King</title>
+    <link rel="shortcut icon" href="images/favicon.png" type="image/png" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/modern-normalize/1.0.0/modern-normalize.min.css"
+      integrity="sha512-ISS7cAi1PEhQ8jnbJpJZMd29NlhNj4AWYyLOSp2CE/CsHxTCu+r+t0D2yoJudVrd0/8fTVPUVDzY5Tvli75u/g=="
+      crossorigin="anonymous"
+    />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Caveat+Brush&family=Montserrat:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"
+      rel="stylesheet"
+    />
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+  </head>
+  <body>
+    <!-- !Путь к изображениям из HTML-фрагмента такой, как из файла index.html -->
+    <!-- <img src="images/demo.jpg" alt="" width="320" /> -->
+
+    <div class="section-container--top">
+      <div class="image_top-container">
+        <include src="./partials/page-header.html"></include>
+        <include src="./partials/hero.html"></include>
+        <include src="./partials/about-us.html"></include>
+      </div>
+    </div>
+
+    <include src="./partials/program.html"></include>
+
+    <div class="section-container--bottom">
+      <include src="./partials/reviews.html"></include>
+      <div class="image_bottom-container">
+        <include src="./partials/registration.html"></include>
+        <include src="./partials/contact-us.html"></include>
+        <include src="./partials/page-footer.html"></include>
+      </div>
+    </div>
+    <!-- Скрипт идёт последним в разметке. В нём уже подключен главный SASS-файл. -->
+    <script src="./index.js"></script>
+    <script src="./readmore.js"></script>
+    <script>
+
+      // slider
+      $(function () {
+        $('.slider').slick({
+          arrows: true,
+		  dots:true,
+          adaptiveHeight: true,
+          centerMode: true,
+          variableWidth: true,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        });
+      });
+	//   Counter-pagination
+	// var $slider = $('.slider');
+
+	// 	if ($slider.length) {
+	// 		var currentSlide;
+	// 		var slidesCount;
+	// 		var sliderCounter = document.createElement('div');
+	// 		sliderCounter.classList.add('slider__counter');
+
+	// 		var updateSliderCounter = function (slick, currentIndex) {
+	// 			currentSlide = slick.slickCurrentSlide() + 1;
+	// 			slidesCount = slick.slideCount;
+	// 			$(sliderCounter).text(currentSlide + '/' + slidesCount)
+	// 		};
+
+	// 		$slider.on('init', function (event, slick) {
+	// 			$slider.append(sliderCounter);
+	// 			updateSliderCounter(slick);
+	// 		});
+
+	// 		$slider.on('afterChange', function (event, slick, currentSlide) {
+	// 			updateSliderCounter(slick, currentSlide);
+	// 		});
+			
+
+	// 		$slider.slick();
+	// 	}	
+
+      // readMore
+      function readMoreFunction() {
+        var less = document.getElementById('less');
+        var moreText = document.getElementById('more');
+        var btnText = document.getElementById('readMoreButton');
+        if (less.style.display === 'none') {
+          less.style.display = 'inline';
+          btnText.innerHTML = 'Read more';
+          moreText.style.display = 'none';
+        } else {
+          less.style.display = 'none';
+          btnText.innerHTML = 'Read less';
+          moreText.style.display = 'block';
+        }
+      }
+    </script>
+    <script>
+      // readMore Program Section
+      function readMoreFunctionProgram() {
+        var lessProgram = document.getElementById('lessProgram');
+        var moreProgram = document.getElementById('moreProgram');
+        var readMoreProgram = document.getElementById('readMoreProgram');
+        if (lessProgram.style.display === 'none') {
+          lessProgram.style.display = 'inline';
+          readMoreProgram.innerHTML = 'Read more';
+          moreProgram.style.display = 'none';
+        } else {
+          lessProgram.style.display = 'none';
+          readMoreProgram.innerHTML = 'Read less';
+          moreProgram.style.display = 'block';
+        }
+      }
+    </script>
+    <script>
+      // slider
+      $(function () {
+        $('.slider').slick({
+          arrows: false,
+          adaptiveHeight: true,
+          centerMode: true,
+          variableWidth: true,
+          infinite: true,
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          initialSlide: 1,
+        });
+      });
+    </script>
+
+    <script>
+      // burger
+      (() => {
+        const menuBtnRef = document.querySelector('[data-menu-button]');
+        const mobileMenuRef = document.querySelector('[data-menu]');
+
+        menuBtnRef.addEventListener('click', () => {
+          const expanded = menuBtnRef.getAttribute('aria-expanded') === 'true' || false;
+
+          menuBtnRef.classList.toggle('is-open');
+          menuBtnRef.setAttribute('aria-expanded', !expanded);
+
+          mobileMenuRef.classList.toggle('is-open');
+        });
+      })();
+    </script>
+
+    <script>
+      //valid form + send without reload page
+      document.addEventListener('DOMContentLoaded', () => {
+        'use strict';
+
+        const form = document.querySelector('[form-regist]');
+
+        const regExpName = /^[^._](?:[\w-]|\.[\w-])+[^.]$/;
+        const regExpPhone = /^(?:\(\d{3}\)|\d{3})(?: *- *)?\d{3}(?: *- *)?\d{4}$/;
+        // const regExpMail = /[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}/;
+
+        const validateElem = elem => {
+          if (elem.name == 'user-name') {
+            if (!regExpName.test(elem.value) && elem.value != '') {
+              alert('Invalid User-name ');
+            }
+          }
+
+          if (elem.name == 'phone-number') {
+            if (!regExpPhone.test(elem.value) && elem.value != '') {
+              alert('Please use the following phone number format: (123)123-1234 or 123-123-1234');
+            }
+          }
+        };
+
+        for (let elem of form.elements) {
+          if (elem.tagName == 'INPUT') {
+            elem.addEventListener('blur', () => {
+              validateElem(elem);
+            });
+          }
+        }
+
+        form.addEventListener('submit', even => {
+          even.preventDefault();
+
+          for (let elem of form.elements) {
+            if (elem.name == 'user-name') {
+              if (elem.value == '') {
+                alert('Please, enter your name');
+              }
+            }
+
+            if (elem.name == 'phone-number') {
+              if (elem.value == '') {
+                alert('Please, leave your phone-number');
+              }
+            }
+
+            if (elem.name == 'email') {
+              if (elem.value == '') {
+                alert('Please, enter your e-mail adress');
+              }
+            }
+          }
+        });
+      });
+
+      document.addEventListener('DOMContentLoaded', () => {
+        'use strict';
+
+        const form = document.querySelector('[form-contact]');
+
+        const regExpName = /^[^._](?:[\w-]|\.[\w-])+[^.]$/;
+        const regExpPhone = /^(?:\(\d{3}\)|\d{3})(?: *- *)?\d{3}(?: *- *)?\d{4}$/;
+        // const regExpMail = /[A-Z0-9._%+-]+@[A-Z0-9-]+\.[A-Z]{2,4}/;
+
+        form.addEventListener('submit', even => {
+          even.preventDefault();
+
+          for (let elem of form.elements) {
+            if (elem.tagName == 'INPUT') {
+              if (elem.value == '') {
+                alert('You have empty fields');
+              }
+            }
+            if (elem.name == 'comment') {
+              if (elem.value == '') {
+                alert('Leave your message');
+              }
+            }
+          }
+        });
+      });
+    </script>
+  </body>
+</html>
